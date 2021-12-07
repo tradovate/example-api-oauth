@@ -64,8 +64,8 @@ const all_tokens = new NodeCache({ deleteOnExpire: true })
 const CLIENT_ID     = process.env.CLIENT_ID
 const CLIENT_SECRET = process.env.CLIENT_SECRET
 const REDIRECT_URI  = `http://localhost:3030/oauth/tradovate/callback`
-const EXCHANGE_URL  = `https://live-d.tradovateapi.com/auth/oauthtoken`
-const AUTH_URL      = `https://trader-d.tradovate.com/oauth`
+const EXCHANGE_URL  = `https://live.tradovateapi.com/auth/oauthtoken`
+const AUTH_URL      = `https://trader.tradovate.com/oauth`
 
 // ROUTES ---------------------------------------------------------------------
 
