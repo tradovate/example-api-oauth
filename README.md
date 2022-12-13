@@ -147,10 +147,7 @@ When we run the code we created, our flow will go like this:
 Nothing ever happens. Or we get an error from express saying `cannot /GET`. That's because we never setup a route
 for our callback. 
 
-What happens when we present our google credentials is basically this - your app asks google if you are the person you say you are. In response,
-Google simply asks for your Google account credentials. If you can satisfy the request, you get a single-use code as a response. The response is sent to the
-`REDIRECT_URI` address that we specified at the top of the file. The actual `code` parameter comes to us in the form of the URL query. We can access this
-using the express Request object (any `req` parameter within in a route callback).
+What happens when we present our google credentials is basically this - your app asks for a user's credentials, and provides a 'grant' if valid credentials can be presented. If your user can satisfying the request, you will get a single-use code as a response. The response is sent to the `REDIRECT_URI` address that we specified at the top of the file. The actual `code` parameter comes to us in the form of the URL query. We can access this using the express Request object (any `req` parameter within in a route callback).
 
 Back in our `ROUTES` section, add a new route:
 
