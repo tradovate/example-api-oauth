@@ -147,10 +147,7 @@ When we run the code we created, our flow will go like this:
 Nothing ever happens. Or we get an error from express saying `cannot /GET`. That's because we never setup a route
 for our callback. 
 
-What happens when we present our google credentials is basically this - your app asks google if you are the person you say you are. In response,
-Google simply asks for your Google account credentials. If you can satisfy the request, you get a single-use code as a response. The response is sent to the
-`REDIRECT_URI` address that we specified at the top of the file. The actual `code` parameter comes to us in the form of the URL query. We can access this
-using the express Request object (any `req` parameter within in a route callback).
+What happens when we present our google credentials is basically this - your app asks for a user's credentials, and provides a 'grant' if valid credentials can be presented. If your user can satisfying the request, you will get a single-use code as a response. The response is sent to the `REDIRECT_URI` address that we specified at the top of the file. The actual `code` parameter comes to us in the form of the URL query. We can access this using the express Request object (any `req` parameter within in a route callback).
 
 Back in our `ROUTES` section, add a new route:
 
@@ -175,7 +172,7 @@ app.get('/oauth/tradovate/callback', async (req, res) => {
 We use the `req` callback parameter's `query` field to access parts of the URL query from code. If it's there, we can easily extract it and 
 put it into an object. We will use these `credentials` in our exchange. Now how can we go about doing that?
 
-We're provided with a URL to exchange our code for a token, https://live-api-d.tradovate.com/auth/oauthtoken. We can send a POST
+We're provided with a URL to exchange our code for a token, https://live-d.tradovateapi.com/auth/oauthtoken. We can send a POST
 request to that address with our `credentials` object in the request form. If all is well, we should be granted an access token. We'll write a 
 utility function to help us exchange our code:
 
@@ -243,7 +240,7 @@ click-to-authenticate screen again. Let's fix that by splitting up our logic. We
 ```js
 //write out HTML to display the result of `/me` endpoint
 const showMe = async (_, res, accessToken) => {
-    const me = JSON.parse(await request('https://live-api-d.tradovate.com/auth/me', {
+    const me = JSON.parse(await request('https://live-d.tradovateapi.com/auth/me', {
         headers: {
             Authorization: 'Bearer ' + accessToken
         }
