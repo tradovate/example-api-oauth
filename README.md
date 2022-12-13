@@ -172,7 +172,7 @@ app.get('/oauth/tradovate/callback', async (req, res) => {
 We use the `req` callback parameter's `query` field to access parts of the URL query from code. If it's there, we can easily extract it and 
 put it into an object. We will use these `credentials` in our exchange. Now how can we go about doing that?
 
-We're provided with a URL to exchange our code for a token, https://live-api-d.tradovate.com/auth/oauthtoken. We can send a POST
+We're provided with a URL to exchange our code for a token, https://live-d.tradovateapi.com/auth/oauthtoken. We can send a POST
 request to that address with our `credentials` object in the request form. If all is well, we should be granted an access token. We'll write a 
 utility function to help us exchange our code:
 
@@ -240,7 +240,7 @@ click-to-authenticate screen again. Let's fix that by splitting up our logic. We
 ```js
 //write out HTML to display the result of `/me` endpoint
 const showMe = async (_, res, accessToken) => {
-    const me = JSON.parse(await request('https://live-api-d.tradovate.com/auth/me', {
+    const me = JSON.parse(await request('https://live-d.tradovateapi.com/auth/me', {
         headers: {
             Authorization: 'Bearer ' + accessToken
         }
